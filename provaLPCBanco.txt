@@ -1,0 +1,258 @@
+programa
+{
+	/* Atividade ClassRoom BANCO ETE 
+	Aluna: ELLEN JACKELINE,
+			JAQUELINE BRITO,
+			KARINE VIANA.
+	Turma: 1°A - DS - Subsequente 
+	Matéria: LPC 
+	Prof.: SILVIO MONTE
+	
+	github: https://github.com/Brittto7
+			https://github.com/KVIANA83
+			https://github.com/Ellenjackeline
+	
+	
+			Requisitos
+	1- Apenas um cliente por execução;
+	2- Ao criar a conta corrente, obrigatório perguntar se deseja realizar depósito inicial
+		e criar automaticamente conta poupança;
+	3- Necessário saldo para transferência entre contas;
+	4- As contas precisam ter nome titular, agência, número da conta e dígito verificador;
+	5- Operações na CC: saque, depósito e exibir conta;
+	6- Operações na CP: aplicar na poupança, resgate e exibir conta;
+	7- Comentar todo trecho do código;
+	8- Postar no Github.
+	*/
+	
+	inclua biblioteca Matematica --> m
+	
+	funcao inicio ()
+	{ //Entrada de Variáveis
+		cadeia NomeTitular, Resposta
+		inteiro Conta, Agencia, Opcao=0
+		const inteiro Digito_cc=1, Digito_cp=2
+		real SaldoDisponivel=0, SaldoPoupanca=0, Valor=0
+	
+	//Entrada de Dados "Menu Inicial"
+		faca{
+			limpa()
+			escreva("=============== BANCO ETE ==============="+"\n")
+			escreva("|                                       |"+"\n")
+			escreva("| Escolha uma opção:                    |"+"\n")
+			escreva("| 1. Abrir Conta                        |"+"\n")
+			escreva("| 2. Exibir Contas                      |"+"\n")
+			escreva("| 3. Saque em Conta Corrente            |"+"\n")
+			escreva("| 4. Depósito em Conta Corrente         |"+"\n")
+			escreva("| 5. Aplicar na Conta Poupança          |"+"\n")
+			escreva("| 6. Resgate na Conta Poupança          |"+"\n")
+			escreva("| 0. Sair                               |"+"\n")
+			escreva("========================================="+"\n")
+			leia(Opcao)
+		//Processamento
+			escolha(Opcao){
+			//"Abertura de Conta"
+				caso 1:
+					limpa()
+					escreva("###### ABERTURA DE CONTA ######", "\n")
+					escreva("Digite seu nome: ")
+					leia(NomeTitular)
+										
+					escreva("Digite o número da Agência: ")
+					leia(Agencia)
+					escreva("Digite o número da Conta Corrente: ")
+					leia(Conta)
+					escreva("Dígito Verificador: ",Digito_cc,"\n")
+					escreva("Conta Corrente criada com sucesso!", "\n")
+					escreva("Conta Corrente: ",Agencia," ",Conta,"-",Digito_cc,"\n")
+					escreva("Saldo: ", SaldoDisponivel,"\n")
+							
+					escreva("Deseja realizar depósito inicial? [ 'S' / 'N' ]  ")
+					leia(Resposta)
+				//Saída de Dados "Abertura de Conta"
+					se(Resposta == "S" ou Resposta == "s"){
+						escreva("Digite o valor para depósito: R$  ")
+						leia(Valor)
+							
+						SaldoDisponivel += Valor
+							
+						escreva("Depósito realizado com sucesso!","\n")
+						escreva("Saldo CC: ", SaldoDisponivel, "\n")
+					}senao se(Resposta == "N" ou Resposta == "n"){
+					}senao{
+						escreva("Digite uma opção válida")
+					}
+					
+					escreva("\n\n", "Deseja Voltar ao menu? [ 'S' / 'N' ]  ")
+					leia(Resposta)
+						
+					se(Resposta == "S" ou Resposta == "s"){
+					}senao se(Resposta == "N" ou Resposta == "n"){
+						Opcao = 0
+						limpa()
+					}
+				//Fim "Abertura de Conta"
+				pare
+			//"Exibir Conta"
+				caso 2: 
+					limpa()
+					escreva("###### EXIBIR CONTAS ######","\n")
+					escreva("Exibir Contas? [ 'S' / 'N' ]  ")
+					leia(Resposta)
+				//Saída de Dados "Exibir Conta"
+					se(Resposta == "S" ou Resposta == "s"){
+						escreva("Cliente: ", NomeTitular,"\n")
+						escreva("Conta Corrente: ",Agencia," ",Conta,"-",Digito_cc,"\n")
+						escreva("Saldo CC: ",SaldoDisponivel,"\n")
+						escreva("Conta Poupança: ", Agencia," ",Conta,"-",Digito_cp,"\n")
+						escreva("Saldo CP: ",SaldoPoupanca,"\n")
+					}senao se(Resposta == "N" ou Resposta == "n"){
+					}senao{
+						escreva("Digite uma opção válida","\n")
+					}
+					
+					escreva("\n\n","Deseja voltar ao menu? [ 'S' / 'N' ]  ")
+					leia(Resposta)
+					
+					se(Resposta == "S" ou Resposta == "s"){
+					}senao se(Resposta == "N" ou Resposta == "n"){
+						Opcao = 0
+					}
+				//Fim "Exibir Conta"
+				pare
+			//"Saque em Conta Corrente"
+				caso 3: 
+					limpa()
+					escreva("###### SAQUE EM CONTA CORRENTE ######","\n")
+					escreva("Conta Corrente: ",Agencia," ",Conta,"-",Digito_cc,"\n")
+					escreva("Saldo CC: ",SaldoDisponivel,"\n")
+					
+					escreva("Digite o valor de Saque R$ ")
+					leia(Valor)
+				//Saída de Dados "Saque em Conta Corrente"
+					se(Valor <= 0){
+						escreva("Não é possível realizar saque de valor igual ou menor que zero")
+					}
+					se((SaldoDisponivel - Valor) >= 0.0){
+						SaldoDisponivel = SaldoDisponivel - Valor
+						escreva("Saque realizado com sucesso!","\n")
+						escreva("Saldo CC: R$ ",SaldoDisponivel,"\n")
+					}senao{
+						escreva("Saldo Insuficiente","\n")						
+					}
+					
+					escreva("\n\n","Deseja voltar ao menu? [ 'S' / 'N' ]  ")
+					leia(Resposta)
+					
+					se(Resposta == "S" ou Resposta == "s"){
+					}senao se(Resposta == "N" ou Resposta == "n"){
+						Opcao = 0
+					}
+					//Fim "Saque em Conta Corrente"
+				pare
+			//"Depósito em Conta Corrente"
+				caso 4: 
+					limpa()
+					escreva("###### DEPÓSITO EM CONTA CORRENTE ######","\n")
+					escreva("Conta Corrente: ",Agencia," ",Conta,"-",Digito_cc,"\n")
+					escreva("Saldo CC: ",SaldoDisponivel,"\n")
+
+					escreva("Digite o valor depósito R$ ")
+					leia(Valor)
+					//Saída de Dados "Depósito em Conta Corrente"
+					se(Valor <= 0){
+						escreva("Não é possível realizar depósito de valor igual ou menor que zero")
+					}senao{
+						SaldoDisponivel = SaldoDisponivel + Valor
+						escreva("Depósito realizado com sucesso!","\n")
+						escreva("Saldo CC: R$ ",SaldoDisponivel,"\n")
+					}
+					
+					escreva("\n\n","Deseja voltar ao menu? [ 'S' / 'N' ]  ")
+					leia(Resposta)
+					
+					se(Resposta == "S" ou Resposta == "s"){
+					}senao se(Resposta == "N" ou Resposta == "n"){
+						Opcao = 0
+					}
+					//Fim "Depósito em Conta"
+				pare
+			//"Aplicar em Conta Poupança"
+				caso 5: 
+					limpa()
+					escreva("###### APLICAR EM CONTA POUPANCA ######","\n")
+					escreva("Conta Poupança: ",Agencia," ",Conta,"-",Digito_cp,"\n")
+					escreva("Saldo CP: ",SaldoPoupanca,"\n")
+					escreva("Conta Corrente: ",Agencia," ",Conta,"-",Digito_cc,"\n")
+					escreva("Saldo CC: ",SaldoDisponivel,"\n")
+
+					
+					escreva("Digite o valor da Aplicação R$ ")
+					leia(Valor)
+					//Saída de Dados "Aplicar na Conta Poupança"
+					se(Valor <= 0){
+						escreva("Não é possível aplicar valor igual ou menor que zero")
+					}senao se((SaldoDisponivel - Valor) >= 0){
+						SaldoDisponivel = SaldoDisponivel - Valor
+						SaldoPoupanca = SaldoPoupanca + Valor
+						escreva("Aplicação realizada com sucesso!","\n")
+						escreva("Saldo CP: R$ ",SaldoPoupanca,"\n")
+						escreva("Saldo CC: R$ ",SaldoDisponivel,"\n")
+					}senao{
+						escreva("Saldo Insuficiente em CC para aplicação","\n")	
+					}
+					
+					escreva("\n\n","Deseja voltar ao menu? [ 'S' / 'N' ]  ")
+					leia(Resposta)
+					
+					se(Resposta == "S" ou Resposta == "s"){
+					}senao se(Resposta == "N" ou Resposta == "n"){
+						Opcao = 0
+					}
+					//Fim "Aplicar em Conta Poupança"
+				pare
+			//"Resgate em Conta Poupança"
+				caso 6: 
+					limpa()
+					escreva("###### RESGATE EM CONTA POUPANCA ######","\n")
+					escreva("Conta Poupança: ",Agencia," ",Conta,"-",Digito_cp,"\n")
+					escreva("Saldo CP: ",SaldoPoupanca,"\n")
+					
+					escreva("Digite o valor de Resgate R$ ")
+					leia(Valor)
+					//Saída de Dados "Resgate em Conta Poupança"
+					se(Valor <= 0){
+						escreva("Não é possível resgatar valor igual ou menor que zero")
+					}senao se((SaldoPoupanca - Valor) >= 0){
+						SaldoPoupanca = SaldoPoupanca - Valor
+						SaldoDisponivel = SaldoDisponivel + Valor
+						escreva("Aplicação realizada com sucesso!","\n")
+						escreva("Saldo CP: R$ ",SaldoPoupanca,"\n")
+						escreva("Saldo CC: R$ ",SaldoDisponivel,"\n")
+					}senao{
+						escreva("Saldo Insuficiente em CP para resgate","\n")	
+					}
+					
+					escreva("\n\n","Deseja voltar ao menu? [ 'S' / 'N' ]  ")
+					leia(Resposta)
+					
+					se(Resposta == "S" ou Resposta == "s"){
+					}senao se(Resposta == "N" ou Resposta == "n"){
+						Opcao = 0
+					}
+					//Fim "Resgate em Conta Poupança"
+				pare
+			//"Sair"
+				caso 0: 
+					escreva("Atendimento Finalizado"+"\n")
+					//Fim "Sair"
+				pare
+				caso contrario:
+					escreva("Digite uma opção válida","\n")
+				pare
+			}//Fim da função "Escolha - Caso"
+		}
+		enquanto(Opcao != 0)
+		//Fim "Faça - Enquanto"
+	}
+}
