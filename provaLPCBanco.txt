@@ -1,9 +1,7 @@
 programa
 {
 	/* Atividade ClassRoom BANCO ETE 
-	Aluna: ELLEN JACKELINE,
-			JAQUELINE BRITO,
-			KARINE VIANA.
+	Aluna: KARINE VIANA CALDAS.
 	Turma: 1°A - DS - Subsequente 
 	Matéria: LPC 
 	Prof.: SILVIO MONTE
