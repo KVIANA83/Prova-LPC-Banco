@@ -6,10 +6,7 @@ programa
 	Matéria: LPC 
 	Prof.: SILVIO MONTE
 	
-	github: https://github.com/Brittto7
-			https://github.com/KVIANA83
-			https://github.com/Ellenjackeline
-	
+	github: https://github.com/KVIANA83
 	
 			Requisitos
 	1- Apenas um cliente por execução;
